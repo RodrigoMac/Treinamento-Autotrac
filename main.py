@@ -13,7 +13,9 @@ cnxn = connection = pyodbc.connect(f'DRIVER=ODBC Driver 17 for SQL Server;SERVER
 
 cursor = cnxn.cursor()
 
-cursor.execute("insert into Message(id, text, timestamp) values (203, 'ALOW', 1972-12-10 18:41:39)")
+#trocar message por body, timestamp por data atual
+cursor.execute("insert into Message(text, timestamp) values ('ALOW', '1972-12-10 18:41:39')")
+cnxn.commit()
 
 FORMAT = '%(asctime)s %(message)s'
 logging.basicConfig(format=FORMAT, level=logging.INFO)
