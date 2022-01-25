@@ -6,6 +6,7 @@ import logging
 FORMAT = '%(asctime)s %(message)s'
 logging.basicConfig(format=FORMAT, level=logging.INFO)
 
+# SUPRIME LOG DE INFORMACOES DO PIKA
 logging.getLogger('pika').propagate = False
 
 # DEFINE OS PARAMETROS DE CONEXAO COM O RABBITMQ Credentials(usuario, senha); Parameters('localhost', 5672, '/', credentials)
@@ -15,10 +16,12 @@ parameters = pika.ConnectionParameters('localhost',
                                        '/',
                                        credentials)
 
+# IMPRIME LOG DE INFORMACOES
 logging.info('Creating connection')
 
-# CRIA CONEXAO COM SERVIDOR DO RABBITMQ
+
 try:
+    # CRIA CONEXAO COM SERVIDOR DO RABBITMQ
     connection = pika.BlockingConnection(parameters)
     channel = connection.channel()
 
@@ -26,10 +29,11 @@ try:
     channel.queue_declare('TesteRodrigo')
 
     # DEFAUTL EXCHANGE: ENVIA MENSAGEM PARA FILA COM NOME IGUAL A ROUTING KEY
-    channel.basic_publish('', 'TesteRodrigo', 'ALOW2')
+    channel.basic_publish('', 'TesteRodrigo', 'ALOW3')
 
     # ENCERRA CONEXAO
     connection.close()
 
 except pika.exceptions.ProbableAuthenticationError as error:
+    # IMPRIME MENSAGEM DE ERRO
     logging.error(error)
