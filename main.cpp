@@ -22,5 +22,7 @@ int main()
     std::string consumer_tag = channel->BasicConsume("myQueue", ""); //Substituir myQueue pelo nome da Queue
     Envelope::ptr_t envelope = channel->BasicConsumeMessage(consumer_tag);
 
+    //comentario qualquer
+
     return 0;
 }
